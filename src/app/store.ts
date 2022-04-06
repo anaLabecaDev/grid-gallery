@@ -1,11 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { unsplashApi } from './service/unsplash';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    [unsplashApi.reducerPath]: unsplashApi.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(unsplashApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
