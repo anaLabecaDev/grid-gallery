@@ -1,9 +1,11 @@
-@import 'src/styles/colors.scss';
+@import 'src/styles/variables.scss';
+@import 'src/styles/mixins.scss';
 
 .app {
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column-reverse;
 
   .header {
     flex: 0 1 auto;
@@ -11,6 +13,10 @@
 
   .content {
     background-color: $grey-1;
-    flex: 1 0 100%;
+    flex: 1 0;
+  }
+
+  @include responsive(medium) {
+    flex-direction: row;
   }
 }
