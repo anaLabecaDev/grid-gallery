@@ -10,8 +10,6 @@ function PhotoInfoModal() {
   const { id } = useParams<'id'>();
   const { data, isLoading } = useGetPhotoDetailQuery({ photoId: id || '' });
 
-  console.log(data);
-
   const onDismiss = () => {
     navigate(-1);
   };
