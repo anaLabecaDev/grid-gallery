@@ -49,8 +49,9 @@
       "error",
       {
         "explicitSpread": "enforce",
-        "html": "ignore",
-        "custom": "ignore"
+        "html": "enforce",
+        "custom": "ignore",
+        "exceptions": [""]
       }
     ],
     // https://redux-toolkit.js.org/usage/immer-reducers#linting-state-mutations

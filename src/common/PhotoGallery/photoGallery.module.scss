@@ -1,0 +1,29 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/mixins.scss';
+
+.imageGallery {
+  overflow-y: scroll;
+  margin: 0 auto;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-flow: row dense;
+  gap: 24px;
+
+  img {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @include responsive(medium) {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+}

@@ -25,12 +25,8 @@ function Navigation() {
 
       <ul className={styles.menu}>
         {menuItems.map((item) => (
-          <li className={styles.menuItem}>
-            <NavLink
-              key={item.name}
-              to={item.to}
-              className={({ isActive }) => (isActive ? styles.active : styles.inactive)}
-            >
+          <li key={item.name} className={styles.menuItem}>
+            <NavLink to={item.to} className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
               {item.icon}
             </NavLink>
           </li>
