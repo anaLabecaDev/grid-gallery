@@ -103,3 +103,32 @@ export interface Photo {
   topic_submissions: TopicSubmissions;
   user: User;
 }
+
+export interface Exif {
+  make: string;
+  model: string;
+  name: string;
+  exposure_time: string;
+  aperture: string;
+  focal_length: string;
+  iso: number;
+}
+
+export interface Position {
+  latitude?: string;
+  longitude?: string;
+}
+export interface Location {
+  title?: string;
+  name?: string;
+  city?: string;
+  country?: string;
+  position: Position;
+}
+export interface PhotoDetail extends Photo {
+  exif: Exif;
+  location: Location;
+  public_domain: boolean;
+  views: number;
+  downloads: number;
+}
