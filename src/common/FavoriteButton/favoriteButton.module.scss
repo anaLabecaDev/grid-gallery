@@ -1,0 +1,10 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/mixins.scss';
+
+.button {
+  @include button-reset;
+  height: 40px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: $blue-2;
+}

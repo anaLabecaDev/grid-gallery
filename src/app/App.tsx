@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Navigation from '../common/Navigation';
 import BaseImagesGrid from '../features/BaseImagesGrid';
-import FavoritePhotos from '../features/FavoriteImages';
+import FavoritePhotos from '../features/FavoritePhotos';
 import PhotoInfoModal from '../features/PhotoInfoModal';
 import styles from './app.module.scss';
 
@@ -18,7 +18,7 @@ function App() {
         <Routes location={state?.backgroundLocation || location}>
           <Route index element={<BaseImagesGrid />} />
           <Route path="home" element={<BaseImagesGrid />} />
-          <Route path="favorite" element={<FavoritePhotos />} />
+          <Route path="favorites" element={<FavoritePhotos />} />
         </Routes>
         {state?.backgroundLocation && (
           <Routes>
