@@ -7,4 +7,13 @@
   border-radius: 10px;
   padding: 0.5rem;
   background-color: $blue-2;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .text {
+    font-size: 14px;
+    color: $grey-6;
+  }
 }
