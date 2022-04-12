@@ -21,7 +21,7 @@ export const unsplashApi = createApi({
   }),
   endpoints: (builder) => ({
     getPhotos: builder.query<Photo[], { page?: number }>({
-      query: ({ page = 1 }) => `photos/?page=${page}`,
+      query: ({ page = 1 }) => `photos?page=${page}&per_page=12`,
     }),
     getPhotoDetail: builder.query<PhotoDetail, { photoId: string }>({
       query: ({ photoId }) => `photos/${photoId}`,

@@ -55,7 +55,8 @@
       }
     ],
     // https://redux-toolkit.js.org/usage/immer-reducers#linting-state-mutations
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }]
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }]
   },
   // Solves Unable to resolve path to module ‘./App’
   "settings": {

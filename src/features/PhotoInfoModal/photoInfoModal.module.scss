@@ -17,6 +17,7 @@
 
   .content {
     display: flex;
+    flex-direction: column;
     border-radius: 8px;
     background-color: transparent;
     height: 600px;
@@ -83,6 +84,11 @@
           color: $grey-5;
         }
       }
+    }
+  }
+  @include responsive(medium) {
+    .content {
+      flex-direction: row;
     }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './empty.module.scss';
 
 interface IEmptyProps {
-  text: string;
+  text?: string;
 }
 
 function Empty({ text = 'Nothing to show' }: IEmptyProps) {

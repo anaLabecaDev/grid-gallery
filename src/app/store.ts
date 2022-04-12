@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import favorites from '../features/FavoritePhotos/favoritesSlice';
+import { loadState } from './localStorage';
 import { unsplashApi } from './service/unsplash';
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     [unsplashApi.reducerPath]: unsplashApi.reducer,
     favorites,
   },
+  preloadedState: loadState(),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(unsplashApi.middleware),
 });
 

@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Photo } from '../../app/service/types';
+import { PhotoDetail } from '../../app/service/types';
 import { RootState } from '../../app/store';
 
 export interface FavoritesSliceState {
-  // favorites: { [photoId: string]: Photo };
-  favorites: Array<string>;
+  favorites: Array<PhotoDetail>;
 }
 
 const initialState: FavoritesSliceState = {
@@ -15,12 +14,13 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    toggleFavorite: (state, { payload }: PayloadAction<{ photoId: string }>) => {
-      const isFavorite = state.favorites.includes(payload.photoId);
+    toggleFavorite: (state, { payload }: PayloadAction<{ photo: PhotoDetail }>) => {
+      const { photo } = payload;
+      const isFavorite = state.favorites.find((storedPhoto) => storedPhoto.id === photo.id);
       if (isFavorite) {
-        state.favorites.filter((photoId) => photoId !== payload.photoId);
+        state.favorites.filter((storedPhoto) => storedPhoto.id !== photo.id);
       } else {
-        state.favorites.push(payload.photoId);
+        state.favorites.push(photo);
       }
     },
   },
@@ -32,4 +32,5 @@ export default favoritesSlice.reducer;
 
 export const selectFavorites = (state: RootState) => state.favorites.favorites;
 
-export const selectIsFavorite = (state: RootState, photoId: string) => state.favorites.favorites.includes(photoId);
+export const selectIsFavorite = (state: RootState, photoId: string) =>
+  state.favorites.favorites.some((photo) => photo.id === photoId);

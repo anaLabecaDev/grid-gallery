@@ -33,37 +33,23 @@ function InfoDetails({ data }: { data?: Exif }) {
   );
 }
 
-type IActionsProps = {
-  onClose: () => void;
-  photoId: string;
-};
+function PhotoInfoModal() {
+  const navigate = useNavigate();
+  const { id } = useParams<'id'>();
+  const { data } = useGetPhotoDetailQuery({ photoId: id || '' });
 
-function Actions({ onClose, photoId }: IActionsProps) {
   const dispatch = useTypedDispatch();
-  const photoIsAFavorite = useTypedSelector((state) => selectIsFavorite(state, photoId));
+  const photoIsAFavorite = useTypedSelector((state) => selectIsFavorite(state, id || ''));
   const [isFavorite, setIsFavorite] = useState(photoIsAFavorite);
 
   const handleFavoriteToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target;
 
-    if (photoId) {
-      dispatch(toggleFavorite({ photoId }));
+    if (data) {
+      dispatch(toggleFavorite({ photo: data }));
       setIsFavorite(checked);
     }
   };
-
-  return (
-    <div className={styles.actions}>
-      <FavoriteButton isFavorite={isFavorite} onClick={handleFavoriteToggle} />
-      <Close title="close" onClick={onClose} className={styles.close} />
-    </div>
-  );
-}
-
-function PhotoInfoModal() {
-  const navigate = useNavigate();
-  const { id } = useParams<'id'>();
-  const { data } = useGetPhotoDetailQuery({ photoId: id || '' });
 
   const onDismiss = () => {
     navigate(-1);
@@ -77,7 +63,10 @@ function PhotoInfoModal() {
             <img src={data?.urls.small} alt="my_image" />
           </section>
           <section className={styles.info}>
-            <Actions onClose={onDismiss} photoId={id || ''} />
+            <div className={styles.actions}>
+              <FavoriteButton isFavorite={isFavorite} onClick={handleFavoriteToggle} />
+              <Close title="close" onClick={onDismiss} className={styles.close} />
+            </div>
             <h1 className={styles.imageName}>{data?.alt_description ?? 'N/A'}</h1>
             <Creator name={data?.user.first_name} />
             <InfoDetails data={data?.exif} />

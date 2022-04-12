@@ -6,6 +6,11 @@ import './index.scss';
 import App from './app/App';
 import { store } from './app/store';
 import * as serviceWorker from './serviceWorker';
+import { saveState } from './app/localStorage';
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 ReactDOM.render(
   <React.StrictMode>
