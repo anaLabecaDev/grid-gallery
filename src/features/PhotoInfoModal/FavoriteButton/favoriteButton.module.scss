@@ -1,0 +1,30 @@
+@import 'src/styles/variables.scss';
+
+.container {
+  .favoriteToggle {
+    background-color: $grey-2;
+    border-radius: 10px;
+    padding: 0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .text {
+      display: block;
+      font-size: 14px;
+      color: $grey-6;
+    }
+
+    &.active,
+    &:hover {
+      background-color: $blue-2;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
