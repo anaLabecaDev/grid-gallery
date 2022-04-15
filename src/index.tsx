@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { saveState } from './app/localStorage';
 
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState(store.getState(), ['favorites']);
 });
 
 ReactDOM.render(
