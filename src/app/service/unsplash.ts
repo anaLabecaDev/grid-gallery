@@ -7,6 +7,7 @@ const UNSPLASH_API_URL = 'https://api.unsplash.com/';
 // Define a service using a base URL and expected endpoints
 export const unsplashApi = createApi({
   reducerPath: 'unsplashApi',
+  tagTypes: ['Photos'],
   baseQuery: fetchBaseQuery({
     baseUrl: UNSPLASH_API_URL,
     prepareHeaders: (headers) => {
@@ -21,7 +22,12 @@ export const unsplashApi = createApi({
   }),
   endpoints: (builder) => ({
     getPhotos: builder.query<Photo[], { page?: number }>({
-      query: ({ page = 1 }) => `photos?page=${page}&per_page=12`,
+      query: ({ page = 1 }) => `photos?page=${page}&per_page=20`,
+      providesTags: (photos, error, arg) => {
+        return photos
+          ? [...photos.map(({ id }) => ({ type: 'Photos', id } as const)), { type: 'Photos', id: 'LIST' }]
+          : [{ type: 'Photos', id: 'LIST' }];
+      },
     }),
     getPhotoDetail: builder.query<PhotoDetail, { photoId: string }>({
       query: ({ photoId }) => `photos/${photoId}`,
